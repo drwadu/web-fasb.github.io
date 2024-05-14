@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/posts.css">
+    <link rel="stylesheet" href="css/clingo.css">
+</head>
+<body>
+
+  <main class="page-content" aria-label="Content">
+    <div class="wrapper">
+      <article class="post">
+
+        <header class="post-header">
+	  <center>
+          <!--h1 class="post-title">fasb web application</h1-->
+	  <h1 class="title"><a href="https://github.com/drwadu/fasb" title="fasb repo">fasb</a> web application</h1>
+	  </center>
+        </header>
+
+        <div class="post-content">
+          <div class="center">
+
+	    <!--b>program</b-->
+            <pre id="input">
+% technical running example
+a :- not b. b :- not a.
+c;d :- b.
+e.</pre>
+
+	    <!--b>route</b-->
+            <pre id="route">~a;b</pre>
+
+            <ul class="hlist">
+              <li>
+                <select id="mode">
+                  <option selected>answer sets</option>
+                  <option>facets</option>
+                  <option>significance</option>
+                </select>
+              </li>
+            <input type="button" id="run" value="enter" onclick="solve()"/>
+            </ul>
+
+
+            <pre id="output" class="code">
+route: ~a;b 
+count: 1 
+
+solution 1: 
+a e </pre>
+
+
+          </div>
+        </div>
+
+      </article>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/clingo-wasm@0.1.1"></script>
+  <script type="text/javascript" src="js/ace.js" charset="utf-8"></script>
+
+  <script>
+    var outputElement = document.getElementById('output');
+    var countElement = document.getElementById('count');
+    //var runButton = document.getElementById('run');
+    var input = ace.edit("input");
+    var route = ace.edit("route");
+    var ex = document.getElementById("examples");
+    //var count = "count: ";
+    var output = "route: ~a;b\ncount: 1\n\nsolution 1: a e";
+
+
+    route.setOptions({ 
+      showLineNumbers: false, 
+      showGutter: false,
+      showPrintMargin: false,
+      cursorStyle: "ace",
+    });
+    input.$blockScrolling = Infinity;
+    input.setOptions({
+      showGutter: false,
+      useSoftTabs: true,
+      tabSize: 2,
+      maxLines: Infinity,
+      mode: "ace/mode/gringo",
+      autoScrollEditorIntoView: true,
+      showPrintMargin: false,
+    });
+
+    countElement.textContent = count;
+    outputElement.textContent = output;
+
+
+
+
+    //await clingo.init("https://cdn.jsdelivr.net/npm/clingo-wasm@0.1.1/dist/clingo.wasm")
+    //let res = await clingo.run(input.getValue(), 0);
+    //console.log(res);
+    //outputElement.textContent = res;
+
+    async function solve() {
+      //clingo = require("clingo-wasm");
+      await clingo.init("https://cdn.jsdelivr.net/npm/clingo-wasm@0.1.1/dist/clingo.wasm")
+      let res = await clingo.run(input.getValue(), 0);
+      //let res = await clingo.run("a;b. c;d :- b. e.", 0);
+      //console.log(res.Result == "SATISFIABLE");
+      //console.log(res.Result);
+
+      //output = res;
+      //countElement.textContent = res.Models.Number;
+      outputElement.textContent = "route: "+ route.getValue() + "\ncount: " + res.Models.Number + "\n\n" + res.Result;
+      //outputElement.textContent += res.Models.Symbols;
+      console.log("bla");
+      console.log(res);
+      console.log(res.Models);
+      console.log(res.Models.Number);
+    }
+
+
+    //solve();
+  </script>
+
+</body>
+
+</html>
