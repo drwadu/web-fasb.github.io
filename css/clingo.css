@@ -4,14 +4,12 @@
   text-align:left;
 }
 #input {
-  /*background-color: #300a24;
-  color: white;*/
   background-color: #eef;
   margin: 10px auto;
   text-align:left;
   font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
 }
-#route {
+#cnf {
   background-color: #3366ff;
   color: white;
   margin: 10px auto;
@@ -35,4 +33,3 @@
   text-align:left;
   font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
 }
-
