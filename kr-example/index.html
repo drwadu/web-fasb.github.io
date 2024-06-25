@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/posts.css">
+    <link rel="stylesheet" href="css/clingo.css">
+</head>
+<body>
+
+  <main class="page-content" aria-label="Content">
+    <div class="wrapper">
+      <article class="post">
+
+        <header class="post-header">
+	  <center>
+	  <h1 class="title"><a href="https://github.com/drwadu/fasb" title="fasb repo">fasb</a> web application</h1>
+	  </center>
+        </header>
+
+        <div class="post-content">
+          <div class="center">
+            <pre id="input">
+% choice rules specify that we expect exactly one first and one second digit as input
+1 {first_digit(0);first_digit(1);first_digit(2);
+first_digit(3);first_digit(4);first_digit(5);
+first_digit(6);first_digit(7);first_digit(8);first_digit(9)} 1.
+1 {second_digit(0);second_digit(1);second_digit(2);
+second_digit(3);second_digit(4);second_digit(5);
+second_digit(6);second_digit(7);second_digit(8);second_digit(9)} 1.
+
+%* 
+rules are retrieved from Table 7 on page 24 in https://proceedings.mlr.press/v202/barbiero23a/barbiero23a.pdf
+
+y_n is mapped to predicted_sum(n)
+f0d is mapped to first_digit(d)
+f1d is mapped to second_digit(d)
+*%
+predicted_sum(0)  :- first_digit(0), second_digit(0). 
+predicted_sum(1)  :- first_digit(0), second_digit(1). 
+predicted_sum(1)  :- first_digit(1), second_digit(0). 
+predicted_sum(2)  :- first_digit(0), second_digit(2). 
+predicted_sum(2)  :- first_digit(1), second_digit(1). 
+predicted_sum(2)  :- first_digit(2), second_digit(0). 
+predicted_sum(3)  :- first_digit(1), second_digit(2). 
+predicted_sum(3)  :- first_digit(3), second_digit(0). 
+predicted_sum(3)  :- first_digit(2), second_digit(1). 
+predicted_sum(3)  :- first_digit(0), second_digit(3). 
+predicted_sum(4)  :- first_digit(3), second_digit(1). 
+predicted_sum(4)  :- first_digit(4), second_digit(0). 
+predicted_sum(4)  :- first_digit(1), second_digit(3). 
+predicted_sum(4)  :- first_digit(2), second_digit(2). 
+predicted_sum(4)  :- first_digit(0), second_digit(4). 
+predicted_sum(5)  :- first_digit(1), second_digit(4). 
+predicted_sum(5)  :- first_digit(3), second_digit(2). 
+predicted_sum(5)  :- first_digit(4), second_digit(1). 
+predicted_sum(5)  :- first_digit(0), second_digit(5). 
+predicted_sum(5)  :- first_digit(2), second_digit(3). 
+predicted_sum(5)  :- first_digit(5), second_digit(0). 
+predicted_sum(6)  :- first_digit(2), second_digit(4). 
+predicted_sum(6)  :- first_digit(5), second_digit(1). 
+predicted_sum(6)  :- first_digit(0), second_digit(6). 
+predicted_sum(6)  :- first_digit(4), second_digit(2). 
+predicted_sum(6)  :- first_digit(1), second_digit(5). 
+predicted_sum(6)  :- first_digit(3), second_digit(3). 
+predicted_sum(6)  :- first_digit(6), second_digit(0). 
+predicted_sum(7)  :- first_digit(0), second_digit(7). 
+predicted_sum(7)  :- first_digit(4), second_digit(3). 
+predicted_sum(7)  :- first_digit(1), second_digit(6). 
+predicted_sum(7)  :- first_digit(2), second_digit(5). 
+predicted_sum(7)  :- first_digit(7), second_digit(0). 
+predicted_sum(7)  :- first_digit(6), second_digit(1). 
+predicted_sum(7)  :- first_digit(5), second_digit(2). 
+predicted_sum(7)  :- first_digit(3), second_digit(4). 
+predicted_sum(8)  :- first_digit(5), second_digit(3). 
+predicted_sum(8)  :- first_digit(1), second_digit(7). 
+predicted_sum(8)  :- first_digit(3), second_digit(5). 
+predicted_sum(8)  :- first_digit(2), second_digit(6). 
+predicted_sum(8)  :- first_digit(6), second_digit(2). 
+predicted_sum(8)  :- first_digit(8), second_digit(0). 
+predicted_sum(8)  :- first_digit(7), second_digit(1). 
+predicted_sum(8)  :- first_digit(4), second_digit(4). 
+predicted_sum(8)  :- first_digit(0), second_digit(8). 
+predicted_sum(8)  :- first_digit(3), second_digit(6). 
+predicted_sum(9)  :- first_digit(4), second_digit(5). 
+predicted_sum(9)  :- first_digit(8), second_digit(1). 
+predicted_sum(9)  :- first_digit(6), second_digit(3). 
+predicted_sum(9)  :- first_digit(1), second_digit(8). 
+predicted_sum(9)  :- first_digit(0), second_digit(9). 
+predicted_sum(9)  :- first_digit(3), second_digit(6).
+predicted_sum(9)  :- first_digit(9), second_digit(0).
+predicted_sum(9)  :- first_digit(7), second_digit(2).
+predicted_sum(9)  :- first_digit(2), second_digit(7).
+predicted_sum(9)  :- first_digit(5), second_digit(4).
+predicted_sum(10) :- first_digit(1), second_digit(9).
+predicted_sum(10) :- first_digit(6), second_digit(4).
+predicted_sum(10) :- first_digit(9), second_digit(1).
+predicted_sum(10) :- first_digit(8), second_digit(2).
+predicted_sum(10) :- first_digit(7), second_digit(3).
+predicted_sum(10) :- first_digit(4), second_digit(6).
+predicted_sum(10) :- first_digit(3), second_digit(7).
+predicted_sum(10) :- first_digit(2), second_digit(8).
+predicted_sum(10) :- first_digit(5), second_digit(5).
+predicted_sum(11) :- first_digit(8), second_digit(3).
+predicted_sum(11) :- first_digit(3), second_digit(8).
+predicted_sum(11) :- first_digit(7), second_digit(4).
+predicted_sum(11) :- first_digit(9), second_digit(2).
+predicted_sum(11) :- first_digit(4), second_digit(7).
+predicted_sum(11) :- first_digit(5), second_digit(6).
+predicted_sum(11) :- first_digit(2), second_digit(9).
+predicted_sum(11) :- first_digit(6), second_digit(5).
+predicted_sum(12) :- first_digit(3), second_digit(9).
+predicted_sum(12) :- first_digit(4), second_digit(8).
+predicted_sum(12) :- first_digit(6), second_digit(6).
+predicted_sum(12) :- first_digit(7), second_digit(5).
+predicted_sum(12) :- first_digit(9), second_digit(3).
+predicted_sum(12) :- first_digit(5), second_digit(7).
+predicted_sum(12) :- first_digit(8), second_digit(4).
+predicted_sum(13) :- first_digit(6), second_digit(7).
+predicted_sum(13) :- first_digit(8), second_digit(5).
+predicted_sum(13) :- first_digit(9), second_digit(4).
+predicted_sum(13) :- first_digit(7), second_digit(6).
+predicted_sum(13) :- first_digit(5), second_digit(8).
+predicted_sum(13) :- first_digit(4), second_digit(9).
+predicted_sum(14) :- first_digit(6), second_digit(8).
+predicted_sum(14) :- first_digit(7), second_digit(7).
+predicted_sum(14) :- first_digit(5), second_digit(9).
+predicted_sum(14) :- first_digit(9), second_digit(5).
+predicted_sum(14) :- first_digit(8), second_digit(6).
+predicted_sum(15) :- first_digit(9), second_digit(6).
+predicted_sum(15) :- first_digit(8), second_digit(7).
+predicted_sum(15) :- first_digit(7), second_digit(8).
+predicted_sum(15) :- first_digit(6), second_digit(9).
+predicted_sum(16) :- first_digit(7), second_digit(9).
+predicted_sum(16) :- first_digit(9), second_digit(7).
+predicted_sum(16) :- first_digit(8), second_digit(8).
+predicted_sum(17) :- first_digit(9), second_digit(8).
+predicted_sum(17) :- first_digit(8), second_digit(9).
+predicted_sum(18) :- first_digit(9), second_digit(9).
+</pre>
+            <pre id="cnf">
+predicted_sum(8)</pre>
+            <ul class="hlist">
+              <li>
+                <select id="mode">
+                  <option selected>answer sets</option>
+                  <option>facet-inducing atoms</option>
+                  <option>uncertainty reductions</option>
+                </select>
+              </li>
+            <input type="button" id="run" value="enter" onclick="solve()"/>
+            </ul>
+            <pre id="output" class="code"> </pre>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/clingo-wasm@0.1.1"></script>
+  <script type="text/javascript" src="js/ace.js" charset="utf-8"></script>
+
+  <script>
+    var outputElement = document.getElementById('output');
+    var input = ace.edit("input");
+    var cnf = ace.edit("cnf");
+    var ex = document.getElementById("examples");
+    var output = "- input an encoding\n- input a cnf: one clause per line with whitespace seperated literals (use `~` for negation)\n- choose an option in the drop-down list\n- press the enter button";
+
+    cnf.$blockScrolling = Infinity;
+    cnf.setOptions({
+        showGutter: false,
+        useSoftTabs: true,
+        tabSize: 2,
+        maxLines: Infinity,
+        autoScrollEditorIntoView: true,
+        showPrintMargin: false,
+    });
+    input.$blockScrolling = Infinity;
+    input.setOptions({
+        useSoftTabs: true,
+        tabSize: 2,
+        maxLines: Infinity,
+        mode: "ace/mode/gringo",
+        autoScrollEditorIntoView: true,
+        showPrintMargin: false,
+    });
+
+    outputElement.textContent = output;
+
+    async function main() {
+        await clingo.init("https://cdn.jsdelivr.net/npm/clingo-wasm@0.1.1/dist/clingo.wasm");
+    }
+
+    main();
+
+    async function solve() {
+        var index = document.getElementById("mode").selectedIndex;
+
+        if (index == 0) {
+            answer_sets();
+        } else if (index == 1) {
+            facet_inducing_atoms();
+        } else if (index == 2) {
+            uncertainty_reductions();
+        } 
+    }
+
+    async function answer_sets() {
+        outputElement.textContent = "";
+
+        delta = cnf.getValue().split("\n").filter(x => x.length > 0).map(x => ":- " + x.trim().split(" ").map((l) => {
+            if (l.charAt(0) == '~') {
+                return l.substring(1)
+            } else {
+                return "not " + l
+            }
+        }).join(",") + ".").join("\n");
+
+        let lp = input.getValue() + "\n" + delta;
+
+        output = "collecting answer sets...";
+        outputElement.textContent = output;
+
+        let res = await clingo.run(lp, 0);
+
+        xs = res.Call[0].Witnesses;
+
+        outputElement.textContent = "";
+        for (let i = 0; i < xs.length; i++) {
+            const x = xs[i].Value;
+
+            outputElement.textContent += "solution " + (i + 1) + ":\n";
+            for (let j = 0; j < x.length; j++) {
+                outputElement.textContent += x[j] + " ";
+            }
+            outputElement.textContent += "\n";
+        }
+    }
+
+    async function facet_inducing_atoms() {
+        outputElement.textContent = "";
+
+        delta = cnf.getValue().split("\n").filter(x => x.length > 0).map(x => ":- " + x.trim().split(" ").map((l) => {
+            if (l.charAt(0) == '~') {
+                return l.substring(1)
+            } else {
+                return "not " + l
+            }
+        }).join(",") + ".").join("\n");
+
+        let lp = input.getValue() + "\n" + delta;
+
+        let res = await clingo.run(lp, 0, ["--enum-mode=brave", "--opt-strategy=usc"]);
+        bcs = res.Call[0].Witnesses.slice(-1)[0].Value;
+
+        if (bcs.length == 0) {
+            outputElement.textContent = "unsat program, no facets";
+            return;
+        }
+
+        res = await clingo.run(lp, 0, ["--enum-mode=cautious", "--opt-strategy=usc"]);
+        let ccs = new Set(res.Call[0].Witnesses.slice(-1)[0].Value);
+
+        let fcs = bcs.filter(x => !ccs.has(x));
+        facets = fcs;
+
+        count = fcs.length;
+        outputElement.textContent += "count: " + count + "\n";
+        for (let i = 0; i < fcs.length; i++) {
+            const atom = fcs[i];
+            outputElement.textContent += "\n" + atom;
+        }
+    }
+
+    async function uncertainty_reductions() {
+        outputElement.textContent = "";
+
+        delta = cnf.getValue().split("\n").filter(x => x.length > 0).map(x => ":- " + x.trim().split(" ").map((l) => {
+            if (l.charAt(0) == '~') {
+                return l.substring(1)
+            } else {
+                return "not " + l
+            }
+        }).join(",") + ".").join("\n");
+
+        let lp = input.getValue() + "\n" + delta;
+
+
+        let res = await clingo.run(lp, 0, ["--enum-mode=brave", "--opt-strategy=usc"]);
+        bcs = res.Call[0].Witnesses.slice(-1)[0].Value;
+
+        if (bcs.length == 0) {
+            return;
+        }
+
+        res = await clingo.run(lp, 0, ["--enum-mode=cautious", "--opt-strategy=usc"]);
+        let ccs = new Set(res.Call[0].Witnesses.slice(-1)[0].Value);
+
+        let fcs = bcs.filter(x => !ccs.has(x));
+        facets = fcs;
+
+        count = 2 * fcs.length;
+        outputElement.textContent = "found " + count + " facets\n\n";
+        outputElement.textContent += " inc    exc   \n";
+        for (let i = 0; i < fcs.length; i++) {
+            const atom = fcs[i];
+
+            let fcs_ = [];
+
+            p = lp + "\n:- not " + atom + ".";
+            let n = 0;
+            res = await clingo.run(p, 0, ["--enum-mode=brave", "--opt-strategy=usc"]);
+            bcs = res.Call[0].Witnesses.slice(-1)[0].Value;
+            if (bcs.length == 0) {
+                fcinc = 0;
+            }
+            res = await clingo.run(p, 0, ["--enum-mode=cautious", "--opt-strategy=usc"]);
+            let ccs = new Set(res.Call[0].Witnesses.slice(-1)[0].Value);
+            fcs_ = bcs.filter(x => !ccs.has(x));
+            n = 2 * fcs_.length;
+            outputElement.textContent += ((count - n) / count).toFixed(3) + "  ";
+
+            p = lp + "\n:- " + atom + ".";
+            res = await clingo.run(p, 0, ["--enum-mode=brave", "--opt-strategy=usc"]);
+            bcs = res.Call[0].Witnesses.slice(-1)[0].Value;
+            if (bcs.length == 0) {
+                fcinc = 0;
+            }
+            res = await clingo.run(p, 0, ["--enum-mode=cautious", "--opt-strategy=usc"]);
+            ccs = new Set(res.Call[0].Witnesses.slice(-1)[0].Value);
+            fcs_ = bcs.filter(x => !ccs.has(x));
+            n = 2 * fcs_.length;
+            outputElement.textContent += ((count - n) / count).toFixed(3) + "  " + atom + "\n";
+        }
+    }
+
+    async function conditional_probabilities() {
+        outputElement.textContent = "";
+
+        delta = cnf.getValue().split("\n").filter(x => x.length > 0).map(x => ":- " + x.trim().split(" ").map((l) => {
+            if (l.charAt(0) == '~') {
+                return l.substring(1)
+            } else {
+                return "not " + l
+            }
+        }).join(",") + ".").join("\n");
+
+        let lp = input.getValue() + "\n" + delta;
+
+        let res = await clingo.run(lp, 0, ["--enum-mode=brave", "--opt-strategy=usc"]);
+        bcs = res.Call[0].Witnesses.slice(-1)[0].Value;
+
+        if (bcs.length == 0) {
+            return;
+        }
+
+        res = await clingo.run(lp, 0, ["--enum-mode=cautious", "--opt-strategy=usc"]);
+        let ccs = new Set(res.Call[0].Witnesses.slice(-1)[0].Value);
+
+        let fcs = bcs.filter(x => !ccs.has(x));
+        facets = fcs;
+
+        res = await clingo.run(lp, 0);
+        count = res.Models.Number;
+
+        outputElement.textContent = "found " + count + " answer sets in total\n\n";
+        outputElement.textContent += " inc    exc   \n";
+        for (let i = 0; i < fcs.length; i++) {
+            const atom = fcs[i];
+
+            p = lp + "\n:- not " + atom + ".";
+            let n = 0;
+            res = await clingo.run(p, 0);
+            n = res.Models.Number;
+            outputElement.textContent += (1.0-((count - n) / count)).toFixed(3) + "  ";
+
+            p = lp + "\n:- " + atom + ".";
+            res = await clingo.run(p, 0);
+            n = res.Models.Number;
+            outputElement.textContent += (1.0-((count - n) / count)).toFixed(3) + "  " + atom + "\n";
+        }
+    }
+
+    async function representative_answer_sets() {
+        outputElement.textContent = "";
+
+        delta = cnf.getValue().split("\n").filter(x => x.length > 0).map(x => ":- " + x.trim().split(" ").map((l) => {
+            if (l.charAt(0) == '~') {
+                return l.substring(1)
+            } else {
+                return "not " + l
+            }
+        }).join(",") + ".").join("\n");
+
+        let lp = input.getValue() + "\n" + delta;
+
+        outputElement.textContent = "...\n";
+        let res = await clingo.run(lp, 0, ["--enum-mode=brave", "--opt-strategy=usc"]);
+        bcs = res.Call[0].Witnesses.slice(-1)[0].Value;
+        if (bcs.length == 0) {
+            return;
+        }
+        res = await clingo.run(lp, 0, ["--enum-mode=cautious", "--opt-strategy=usc"]);
+        let ccs = new Set(res.Call[0].Witnesses.slice(-1)[0].Value);
+        let fcs = bcs.filter(x => !ccs.has(x));
+        to_observe = fcs;
+        let prev = to_observe.length;
+        let curr = prev;
+
+        let n = 1;
+        for (let i = 0; i < fcs.length; i++) {
+            if (prev == 0) { 
+                return; 
+            }
+
+            const atom = fcs[i];
+            res = await clingo.run(lp + ":- not " + atom + ".", 1);
+            xs = new Set(res.Call[0].Witnesses.slice(-1)[0].Value);
+            to_observe = to_observe.filter(x => !xs.has(x));
+            curr = to_observe.length;
+
+            xs = Array.from(xs);
+            if (prev > curr) {
+                outputElement.textContent += "solution " + n + ":\n";
+                for (let k = 0; k < xs.length; k++) { outputElement.textContent += xs[k] + " "; }
+                outputElement.textContent += "\n";
+                n += 1;
+            }
+
+            prev = curr;
+        }
+    }
+  </script>
+
+</body>
+
+</html>
