@@ -25,125 +25,125 @@
           <div class="center">
             <pre id="input">
 % choice rules specify that we expect exactly one first and one second digit as input
-1 {first_digit(0);first_digit(1);first_digit(2);
-first_digit(3);first_digit(4);first_digit(5);
-first_digit(6);first_digit(7);first_digit(8);first_digit(9)} 1.
-1 {second_digit(0);second_digit(1);second_digit(2);
-second_digit(3);second_digit(4);second_digit(5);
-second_digit(6);second_digit(7);second_digit(8);second_digit(9)} 1.
+1 {digitL(0);digitL(1);digitL(2);
+digitL(3);digitL(4);digitL(5);
+digitL(6);digitL(7);digitL(8);digitL(9)} 1.
+1 {digitR(0);digitR(1);digitR(2);
+digitR(3);digitR(4);digitR(5);
+digitR(6);digitR(7);digitR(8);digitR(9)} 1.
 
 %* 
 rules are retrieved from Table 7 on page 24 in https://proceedings.mlr.press/v202/barbiero23a/barbiero23a.pdf
 
-y_n is mapped to predicted_sum(n)
-f0d is mapped to first_digit(d)
-f1d is mapped to second_digit(d)
+y_n is mapped to pred_sum(n)
+f0d is mapped to digitL(d)
+f1d is mapped to digitR(d)
 *%
-predicted_sum(0)  :- first_digit(0), second_digit(0). 
-predicted_sum(1)  :- first_digit(0), second_digit(1). 
-predicted_sum(1)  :- first_digit(1), second_digit(0). 
-predicted_sum(2)  :- first_digit(0), second_digit(2). 
-predicted_sum(2)  :- first_digit(1), second_digit(1). 
-predicted_sum(2)  :- first_digit(2), second_digit(0). 
-predicted_sum(3)  :- first_digit(1), second_digit(2). 
-predicted_sum(3)  :- first_digit(3), second_digit(0). 
-predicted_sum(3)  :- first_digit(2), second_digit(1). 
-predicted_sum(3)  :- first_digit(0), second_digit(3). 
-predicted_sum(4)  :- first_digit(3), second_digit(1). 
-predicted_sum(4)  :- first_digit(4), second_digit(0). 
-predicted_sum(4)  :- first_digit(1), second_digit(3). 
-predicted_sum(4)  :- first_digit(2), second_digit(2). 
-predicted_sum(4)  :- first_digit(0), second_digit(4). 
-predicted_sum(5)  :- first_digit(1), second_digit(4). 
-predicted_sum(5)  :- first_digit(3), second_digit(2). 
-predicted_sum(5)  :- first_digit(4), second_digit(1). 
-predicted_sum(5)  :- first_digit(0), second_digit(5). 
-predicted_sum(5)  :- first_digit(2), second_digit(3). 
-predicted_sum(5)  :- first_digit(5), second_digit(0). 
-predicted_sum(6)  :- first_digit(2), second_digit(4). 
-predicted_sum(6)  :- first_digit(5), second_digit(1). 
-predicted_sum(6)  :- first_digit(0), second_digit(6). 
-predicted_sum(6)  :- first_digit(4), second_digit(2). 
-predicted_sum(6)  :- first_digit(1), second_digit(5). 
-predicted_sum(6)  :- first_digit(3), second_digit(3). 
-predicted_sum(6)  :- first_digit(6), second_digit(0). 
-predicted_sum(7)  :- first_digit(0), second_digit(7). 
-predicted_sum(7)  :- first_digit(4), second_digit(3). 
-predicted_sum(7)  :- first_digit(1), second_digit(6). 
-predicted_sum(7)  :- first_digit(2), second_digit(5). 
-predicted_sum(7)  :- first_digit(7), second_digit(0). 
-predicted_sum(7)  :- first_digit(6), second_digit(1). 
-predicted_sum(7)  :- first_digit(5), second_digit(2). 
-predicted_sum(7)  :- first_digit(3), second_digit(4). 
-predicted_sum(8)  :- first_digit(5), second_digit(3). 
-predicted_sum(8)  :- first_digit(1), second_digit(7). 
-predicted_sum(8)  :- first_digit(3), second_digit(5). 
-predicted_sum(8)  :- first_digit(2), second_digit(6). 
-predicted_sum(8)  :- first_digit(6), second_digit(2). 
-predicted_sum(8)  :- first_digit(8), second_digit(0). 
-predicted_sum(8)  :- first_digit(7), second_digit(1). 
-predicted_sum(8)  :- first_digit(4), second_digit(4). 
-predicted_sum(8)  :- first_digit(0), second_digit(8). 
-predicted_sum(8)  :- first_digit(3), second_digit(6). 
-predicted_sum(9)  :- first_digit(4), second_digit(5). 
-predicted_sum(9)  :- first_digit(8), second_digit(1). 
-predicted_sum(9)  :- first_digit(6), second_digit(3). 
-predicted_sum(9)  :- first_digit(1), second_digit(8). 
-predicted_sum(9)  :- first_digit(0), second_digit(9). 
-predicted_sum(9)  :- first_digit(3), second_digit(6).
-predicted_sum(9)  :- first_digit(9), second_digit(0).
-predicted_sum(9)  :- first_digit(7), second_digit(2).
-predicted_sum(9)  :- first_digit(2), second_digit(7).
-predicted_sum(9)  :- first_digit(5), second_digit(4).
-predicted_sum(10) :- first_digit(1), second_digit(9).
-predicted_sum(10) :- first_digit(6), second_digit(4).
-predicted_sum(10) :- first_digit(9), second_digit(1).
-predicted_sum(10) :- first_digit(8), second_digit(2).
-predicted_sum(10) :- first_digit(7), second_digit(3).
-predicted_sum(10) :- first_digit(4), second_digit(6).
-predicted_sum(10) :- first_digit(3), second_digit(7).
-predicted_sum(10) :- first_digit(2), second_digit(8).
-predicted_sum(10) :- first_digit(5), second_digit(5).
-predicted_sum(11) :- first_digit(8), second_digit(3).
-predicted_sum(11) :- first_digit(3), second_digit(8).
-predicted_sum(11) :- first_digit(7), second_digit(4).
-predicted_sum(11) :- first_digit(9), second_digit(2).
-predicted_sum(11) :- first_digit(4), second_digit(7).
-predicted_sum(11) :- first_digit(5), second_digit(6).
-predicted_sum(11) :- first_digit(2), second_digit(9).
-predicted_sum(11) :- first_digit(6), second_digit(5).
-predicted_sum(12) :- first_digit(3), second_digit(9).
-predicted_sum(12) :- first_digit(4), second_digit(8).
-predicted_sum(12) :- first_digit(6), second_digit(6).
-predicted_sum(12) :- first_digit(7), second_digit(5).
-predicted_sum(12) :- first_digit(9), second_digit(3).
-predicted_sum(12) :- first_digit(5), second_digit(7).
-predicted_sum(12) :- first_digit(8), second_digit(4).
-predicted_sum(13) :- first_digit(6), second_digit(7).
-predicted_sum(13) :- first_digit(8), second_digit(5).
-predicted_sum(13) :- first_digit(9), second_digit(4).
-predicted_sum(13) :- first_digit(7), second_digit(6).
-predicted_sum(13) :- first_digit(5), second_digit(8).
-predicted_sum(13) :- first_digit(4), second_digit(9).
-predicted_sum(14) :- first_digit(6), second_digit(8).
-predicted_sum(14) :- first_digit(7), second_digit(7).
-predicted_sum(14) :- first_digit(5), second_digit(9).
-predicted_sum(14) :- first_digit(9), second_digit(5).
-predicted_sum(14) :- first_digit(8), second_digit(6).
-predicted_sum(15) :- first_digit(9), second_digit(6).
-predicted_sum(15) :- first_digit(8), second_digit(7).
-predicted_sum(15) :- first_digit(7), second_digit(8).
-predicted_sum(15) :- first_digit(6), second_digit(9).
-predicted_sum(16) :- first_digit(7), second_digit(9).
-predicted_sum(16) :- first_digit(9), second_digit(7).
-predicted_sum(16) :- first_digit(8), second_digit(8).
-predicted_sum(17) :- first_digit(9), second_digit(8).
-predicted_sum(17) :- first_digit(8), second_digit(9).
-predicted_sum(18) :- first_digit(9), second_digit(9).
+pred_sum(0)  :- digitL(0), digitR(0). 
+pred_sum(1)  :- digitL(0), digitR(1). 
+pred_sum(1)  :- digitL(1), digitR(0). 
+pred_sum(2)  :- digitL(0), digitR(2). 
+pred_sum(2)  :- digitL(1), digitR(1). 
+pred_sum(2)  :- digitL(2), digitR(0). 
+pred_sum(3)  :- digitL(1), digitR(2). 
+pred_sum(3)  :- digitL(3), digitR(0). 
+pred_sum(3)  :- digitL(2), digitR(1). 
+pred_sum(3)  :- digitL(0), digitR(3). 
+pred_sum(4)  :- digitL(3), digitR(1). 
+pred_sum(4)  :- digitL(4), digitR(0). 
+pred_sum(4)  :- digitL(1), digitR(3). 
+pred_sum(4)  :- digitL(2), digitR(2). 
+pred_sum(4)  :- digitL(0), digitR(4). 
+pred_sum(5)  :- digitL(1), digitR(4). 
+pred_sum(5)  :- digitL(3), digitR(2). 
+pred_sum(5)  :- digitL(4), digitR(1). 
+pred_sum(5)  :- digitL(0), digitR(5). 
+pred_sum(5)  :- digitL(2), digitR(3). 
+pred_sum(5)  :- digitL(5), digitR(0). 
+pred_sum(6)  :- digitL(2), digitR(4). 
+pred_sum(6)  :- digitL(5), digitR(1). 
+pred_sum(6)  :- digitL(0), digitR(6). 
+pred_sum(6)  :- digitL(4), digitR(2). 
+pred_sum(6)  :- digitL(1), digitR(5). 
+pred_sum(6)  :- digitL(3), digitR(3). 
+pred_sum(6)  :- digitL(6), digitR(0). 
+pred_sum(7)  :- digitL(0), digitR(7). 
+pred_sum(7)  :- digitL(4), digitR(3). 
+pred_sum(7)  :- digitL(1), digitR(6). 
+pred_sum(7)  :- digitL(2), digitR(5). 
+pred_sum(7)  :- digitL(7), digitR(0). 
+pred_sum(7)  :- digitL(6), digitR(1). 
+pred_sum(7)  :- digitL(5), digitR(2). 
+pred_sum(7)  :- digitL(3), digitR(4). 
+pred_sum(8)  :- digitL(5), digitR(3). 
+pred_sum(8)  :- digitL(1), digitR(7). 
+pred_sum(8)  :- digitL(3), digitR(5). 
+pred_sum(8)  :- digitL(2), digitR(6). 
+pred_sum(8)  :- digitL(6), digitR(2). 
+pred_sum(8)  :- digitL(8), digitR(0). 
+pred_sum(8)  :- digitL(7), digitR(1). 
+pred_sum(8)  :- digitL(4), digitR(4). 
+pred_sum(8)  :- digitL(0), digitR(8). 
+pred_sum(8)  :- digitL(3), digitR(6). 
+pred_sum(9)  :- digitL(4), digitR(5). 
+pred_sum(9)  :- digitL(8), digitR(1). 
+pred_sum(9)  :- digitL(6), digitR(3). 
+pred_sum(9)  :- digitL(1), digitR(8). 
+pred_sum(9)  :- digitL(0), digitR(9). 
+pred_sum(9)  :- digitL(3), digitR(6).
+pred_sum(9)  :- digitL(9), digitR(0).
+pred_sum(9)  :- digitL(7), digitR(2).
+pred_sum(9)  :- digitL(2), digitR(7).
+pred_sum(9)  :- digitL(5), digitR(4).
+pred_sum(10) :- digitL(1), digitR(9).
+pred_sum(10) :- digitL(6), digitR(4).
+pred_sum(10) :- digitL(9), digitR(1).
+pred_sum(10) :- digitL(8), digitR(2).
+pred_sum(10) :- digitL(7), digitR(3).
+pred_sum(10) :- digitL(4), digitR(6).
+pred_sum(10) :- digitL(3), digitR(7).
+pred_sum(10) :- digitL(2), digitR(8).
+pred_sum(10) :- digitL(5), digitR(5).
+pred_sum(11) :- digitL(8), digitR(3).
+pred_sum(11) :- digitL(3), digitR(8).
+pred_sum(11) :- digitL(7), digitR(4).
+pred_sum(11) :- digitL(9), digitR(2).
+pred_sum(11) :- digitL(4), digitR(7).
+pred_sum(11) :- digitL(5), digitR(6).
+pred_sum(11) :- digitL(2), digitR(9).
+pred_sum(11) :- digitL(6), digitR(5).
+pred_sum(12) :- digitL(3), digitR(9).
+pred_sum(12) :- digitL(4), digitR(8).
+pred_sum(12) :- digitL(6), digitR(6).
+pred_sum(12) :- digitL(7), digitR(5).
+pred_sum(12) :- digitL(9), digitR(3).
+pred_sum(12) :- digitL(5), digitR(7).
+pred_sum(12) :- digitL(8), digitR(4).
+pred_sum(13) :- digitL(6), digitR(7).
+pred_sum(13) :- digitL(8), digitR(5).
+pred_sum(13) :- digitL(9), digitR(4).
+pred_sum(13) :- digitL(7), digitR(6).
+pred_sum(13) :- digitL(5), digitR(8).
+pred_sum(13) :- digitL(4), digitR(9).
+pred_sum(14) :- digitL(6), digitR(8).
+pred_sum(14) :- digitL(7), digitR(7).
+pred_sum(14) :- digitL(5), digitR(9).
+pred_sum(14) :- digitL(9), digitR(5).
+pred_sum(14) :- digitL(8), digitR(6).
+pred_sum(15) :- digitL(9), digitR(6).
+pred_sum(15) :- digitL(8), digitR(7).
+pred_sum(15) :- digitL(7), digitR(8).
+pred_sum(15) :- digitL(6), digitR(9).
+pred_sum(16) :- digitL(7), digitR(9).
+pred_sum(16) :- digitL(9), digitR(7).
+pred_sum(16) :- digitL(8), digitR(8).
+pred_sum(17) :- digitL(9), digitR(8).
+pred_sum(17) :- digitL(8), digitR(9).
+pred_sum(18) :- digitL(9), digitR(9).
 </pre>
             <pre id="cnf">
-predicted_sum(8)
-first_digit(3) second_digit(6)</pre>
+pred_sum(8)
+digitL(3) digitR(6)</pre>
             <ul class="hlist">
               <li>
                 <select id="mode">
